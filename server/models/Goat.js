@@ -46,6 +46,9 @@ class Goat {
       throw new Error("age or name missing")
     }
 
+    // data.age ||= this.age
+    // data.name ||= this.name
+
     try {
       const response = await db.query(" UPDATE goats SET name = $1, age = $2 WHERE id = $3 RETURNING * ", [data.name, data.age, this.id])
       return new Goat(response.rows[0])
